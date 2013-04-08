@@ -1,0 +1,7 @@
+parameters:
+#    dtl_travel.example.class: DTL\TravelBundle\Example
+
+services:
+#    dtl_travel.example:
+#        class: %dtl_travel.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
