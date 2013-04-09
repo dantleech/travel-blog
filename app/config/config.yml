@@ -1,6 +1,7 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
+    - { resource: @SymfonyCmfBlogBundle/Resources/config/routing/autoroute_default.yml }
 
 framework:
     #esi:             ~
@@ -73,8 +74,17 @@ liip_doctrine_cache:
             type: file_system
 
 symfony_cmf_routing_extra:
+    chain:
+        routers_by_id:
+            symfony_cmf_routing_extra.dynamic_router: 20
+            router.default: 100
     dynamic:
         enabled: true
+        routing_repositoryroot: /cms/routes
+        controllers_by_class:
+            Symfony\Cmf\Bundle\BlogBundle\Document\Blog: symfony_cmf_blog.blog_controller:listAction
+            Symfony\Cmf\Bundle\BlogBundle\Document\Post: symfony_cmf_blog.blog_controller:viewPostAction
+
 
 symfony_cmf_simple_cms:
     routing:
