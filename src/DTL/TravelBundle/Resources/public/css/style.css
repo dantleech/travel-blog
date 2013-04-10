@@ -3,6 +3,9 @@
     margin-bottom: 2em;
 }
 
+.header {
+}
+
 a, a:visited {
     background:inherit;
     color:#79A325;
@@ -44,7 +47,7 @@ hr {
 }
 
 #banner .hero-unit {
-    background-color: #a3ca5f;
+    background-image: url(../images/bg_header.png);
     padding: 2em;
     margin-bottom: .5em;
 }

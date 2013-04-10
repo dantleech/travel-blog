@@ -81,9 +81,13 @@ symfony_cmf_routing_extra:
     dynamic:
         enabled: true
         routing_repositoryroot: /cms/routes
+        generic_controller: symfony_cmf_content.controller:indexAction
         controllers_by_class:
+            Symfony\Cmf\Bundle\ContentBundle\Document\StaticContent: symfony_cmf_content.controller:indexAction
             Symfony\Cmf\Bundle\BlogBundle\Document\Blog: symfony_cmf_blog.blog_controller:listAction
             Symfony\Cmf\Bundle\BlogBundle\Document\Post: symfony_cmf_blog.blog_controller:viewPostAction
+        templates_by_class:
+            Symfony\Cmf\Bundle\ContentBundle\Document\StaticContent: DTLTravelBundle:StaticContent:layout.html.twig
 
 
 symfony_cmf_simple_cms:

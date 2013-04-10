@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    {% block includes %}
+    <!-- <link href="{{ asset('bundles/dtltravel/bootstrap/css/bootstrap.css') }}" type="text/css" rel="stylesheet"/> !-->
+        <!-- <link href="{{ asset('bundles/dtltravel/bootstrap/css/bootstrap-responsive.css') }}" type="text/css" rel="stylesheet"/> !-->
+            <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    {% endblock %}
+        <title>My Blog</title>
+    </head>
+    <body>
+        <div class="container">
+            <h1>My Blog</h1>
+            <section id="main">
+                {% block content %}
+                {% endblock %}
+            </section>
+        </div>
+    </body>
+</html>

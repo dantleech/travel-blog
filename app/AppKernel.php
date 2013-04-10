@@ -34,8 +34,6 @@ class AppKernel extends Kernel
             new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle(),
             new Symfony\Cmf\Bundle\RoutingAutoBundle\SymfonyCmfRoutingAutoBundle(),
 
-            // and the sandbox bundle
-            new Acme\MainBundle\AcmeMainBundle(),
             new DTL\TravelBundle\DTLTravelBundle(),
             new Sonata\jQueryBundle\SonatajQueryBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),

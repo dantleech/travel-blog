@@ -7,10 +7,9 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Symfony\Cmf\Bundle\BlogBundle\Document\Blog;
 use Symfony\Cmf\Bundle\BlogBundle\Document\Post;
-use Symfony\Component\DependencyInjection\ContainerAware;
 use PHPCR\Util\NodeHelper;
 
-class LoadBlogData extends ContainerAware implements FixtureInterface, OrderedFixtureInterface
+class LoadBlogData implements FixtureInterface, OrderedFixtureInterface
 {
     public function getOrder()
     {

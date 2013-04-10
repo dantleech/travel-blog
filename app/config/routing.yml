@@ -7,7 +7,7 @@ home_redirect:
     pattern: /
     defaults:
         _controller: FrameworkBundle:Redirect:redirect
-        route: /cms/simple
+        route: /cms/routes/home
         permanent: true # this for 301
 
 static:
