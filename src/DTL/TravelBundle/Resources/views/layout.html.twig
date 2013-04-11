@@ -2,19 +2,28 @@
 <html>
     <head>
     {% block includes %}
-    <!-- <link href="{{ asset('bundles/dtltravel/bootstrap/css/bootstrap.css') }}" type="text/css" rel="stylesheet"/> !-->
-        <!-- <link href="{{ asset('bundles/dtltravel/bootstrap/css/bootstrap-responsive.css') }}" type="text/css" rel="stylesheet"/> !-->
-            <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap-combined.min.css') }}" rel="stylesheet">
     {% endblock %}
         <title>My Blog</title>
     </head>
     <body>
         <div class="container">
-            <h1>My Blog</h1>
-            <section id="main">
+            <div class="row">
+                <div class="span12">
+                    <h1>My Blog</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span12 navbar">
+                    <div class="navbar-inner">
+                        {{ knp_menu_render('main') }}
+                    </div>
+                </div>
+            </div>
+            <div id="main">
                 {% block content %}
                 {% endblock %}
-            </section>
+            </div>
         </div>
     </body>
 </html>
