@@ -65,13 +65,11 @@ doctrine_phpcr:
             de:
                 - de
                 - en
-
-liip_doctrine_cache:
-    namespaces:
-        meta:
-            type: file_system
-        nodes:
-            type: file_system
+        mappings:
+            SonataMediaBundle:
+                prefix: Sonata\MediaBundle\PHPCR
+            ApplicationSonataMediaBundle:
+                prefix: Application\Sonata\MediaBundle\PHPCR
 
 symfony_cmf_routing_extra:
     chain:
@@ -90,16 +88,6 @@ symfony_cmf_routing_extra:
             Symfony\Cmf\Bundle\ContentBundle\Document\StaticContent: DTLTravelBundle:StaticContent:layout.html.twig
 
 
-symfony_cmf_simple_cms:
-    routing:
-        templates_by_class:
-            Symfony\Cmf\Bundle\SimpleCmsBundle\Document\Page:  SymfonyCmfSimpleCmsBundle:Page:index.html.twig
-        controllers_by_class:
-            Symfony\Cmf\Bundle\RoutingExtraBundle\Document\RedirectRoute:  symfony_cmf_routing_extra.redirect_controller:redirectAction
-    multilang:
-        locales: %locales%
-    use_sonata_admin: false
-
 knp_menu:
     twig: 
         template: DTLTravelBundle::knp_menu.html.twig
@@ -114,22 +102,34 @@ sonata_admin:
             - 
                 position: left
                 type: sonata.admin.block.admin_list
-                settings: 
-                    groups: ['dashboard.group_blog']
-        groups:
-            dashboard.group_blog:
-                label: Blog
 
-symfony_cmf_create:
-    phpcr_odm: true
+sonata_media:
+    default_context: default
+    db_driver: doctrine_phpcr
+    contexts:
+        default:  # the default context is mandatory
+            providers:
+                - sonata.media.provider.dailymotion
+                - sonata.media.provider.youtube
+                - sonata.media.provider.image
+                - sonata.media.provider.file
 
-lunetics_locale:
-    strict_mode: true
-    guessing_order:
-        - cookie
-        - router
-        - browser
-    allowed_locales: %locales%
+            formats:
+                small: { width: 100 , quality: 70}
+                big:   { width: 500 , quality: 70}
+
+    cdn:
+        server:
+            path: /uploads/media # http://media.sonata-project.org/
+
+    filesystem:
+        local:
+            directory:  %kernel.root_dir%/../web/uploads/media
+            create:     false
+    class:
+        media:             Application\Sonata\MediaBundle\PHPCR\Media
+        gallery:           Application\Sonata\MediaBundle\PHPCR\Gallery
+        gallery_has_media: Application\Sonata\MediaBundle\PHPCR\GalleryHasMedia
 
 symfony_cmf_blog:
     blog_basepath: /cms/content

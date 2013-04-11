@@ -17,19 +17,13 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
 
             new Doctrine\Bundle\PHPCRBundle\DoctrinePHPCRBundle(),
-            new Liip\DoctrineCacheBundle\LiipDoctrineCacheBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
-            new Lunetics\LocaleBundle\LuneticsLocaleBundle(),
-            new FOS\RestBundle\FOSRestBundle(),
-            new JMS\SerializerBundle\JMSSerializerBundle($this),
 
             // enable cmf bundles
             new Symfony\Cmf\Bundle\RoutingExtraBundle\SymfonyCmfRoutingExtraBundle(),
             new Symfony\Cmf\Bundle\CoreBundle\SymfonyCmfCoreBundle(),
             new Symfony\Cmf\Bundle\MenuBundle\SymfonyCmfMenuBundle(),
             new Symfony\Cmf\Bundle\ContentBundle\SymfonyCmfContentBundle(),
-            new Symfony\Cmf\Bundle\SimpleCmsBundle\SymfonyCmfSimpleCmsBundle(),
-            new Symfony\Cmf\Bundle\CreateBundle\SymfonyCmfCreateBundle(),
             new Symfony\Cmf\Bundle\BlogBundle\SymfonyCmfBlogBundle(),
             new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle(),
             new Symfony\Cmf\Bundle\RoutingAutoBundle\SymfonyCmfRoutingAutoBundle(),
@@ -39,6 +33,9 @@ class AppKernel extends Kernel
             new Sonata\BlockBundle\SonataBlockBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
             new Sonata\DoctrinePHPCRAdminBundle\SonataDoctrinePHPCRAdminBundle(),
+            new Sonata\MediaBundle\SonataMediaBundle(),
+            new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
+            new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
