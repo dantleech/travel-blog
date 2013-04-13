@@ -68,8 +68,8 @@ doctrine_phpcr:
         mappings:
             SonataMediaBundle:
                 prefix: Sonata\MediaBundle\PHPCR
-            ApplicationSonataMediaBundle:
-                prefix: Application\Sonata\MediaBundle\PHPCR
+            SandboxMediaBundle:
+                prefix: Sandbox\MediaBundle\Document
 
 symfony_cmf_routing_extra:
     chain:
@@ -109,10 +109,10 @@ sonata_media:
     contexts:
         default:  # the default context is mandatory
             providers:
-                - sonata.media.provider.dailymotion
-                - sonata.media.provider.youtube
+#                - sonata.media.provider.dailymotion
+#                - sonata.media.provider.youtube
                 - sonata.media.provider.image
-                - sonata.media.provider.file
+#                - sonata.media.provider.file
 
             formats:
                 small: { width: 100 , quality: 70}
@@ -125,11 +125,11 @@ sonata_media:
     filesystem:
         local:
             directory:  %kernel.root_dir%/../web/uploads/media
-            create:     false
+            create:     true
     class:
-        media:             Application\Sonata\MediaBundle\PHPCR\Media
-        gallery:           Application\Sonata\MediaBundle\PHPCR\Gallery
-        gallery_has_media: Application\Sonata\MediaBundle\PHPCR\GalleryHasMedia
+        media:              Sandbox\MediaBundle\Document\Media
+        gallery:            Sandbox\MediaBundle\Document\Gallery
+        gallery_has_media:  Sandbox\MediaBundle\Document\GalleryHasMedia
 
 symfony_cmf_blog:
     blog_basepath: /cms/content

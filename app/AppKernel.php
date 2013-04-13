@@ -35,7 +35,7 @@ class AppKernel extends Kernel
             new Sonata\DoctrinePHPCRAdminBundle\SonataDoctrinePHPCRAdminBundle(),
             new Sonata\MediaBundle\SonataMediaBundle(),
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
-            new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
+            new Sandbox\MediaBundle\SandboxMediaBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

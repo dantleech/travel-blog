@@ -4,6 +4,13 @@ parameters:
     secret: 10784a86848b5412b5f7fa644e90ef24e
     database_driver: pdo_sqlite
     database_path: '%kernel.root_dir%/app.sqlite'
+#    phpcr_backend:
+#        type: jackrabbit
+#        url: http://localhost:8080/server/
+#    phpcr_workspace: travel
+#    phpcr_user: admin
+#    phpcr_pass: admin
+
     phpcr_backend:
         type: doctrinedbal
         connection: doctrine.dbal.default_connection
@@ -19,3 +26,4 @@ parameters:
     database_name: null
     database_user: null
     database_password: null
+

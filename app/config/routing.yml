@@ -25,10 +25,15 @@ sonata_admin:
     resource: .
     type: sonata_admin
     prefix: /admin
+    requirements:
+        id:  .+
 
 gallery:
     resource: '@SonataMediaBundle/Resources/config/routing/gallery.xml'
     prefix: /admin/media/gallery
+    requirements:
+        id:  .+
+
 
 media:
     resource: '@SonataMediaBundle/Resources/config/routing/media.xml'
