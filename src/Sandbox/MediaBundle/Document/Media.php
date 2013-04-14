@@ -90,7 +90,7 @@ class Media extends BaseMedia
 
     public function setTimestamp(\DateTime $dateTime)
     {
-        $this->dateTime = $dateTime;
+        $this->timestamp = $dateTime;
     }
 
     public function getTimestamp()

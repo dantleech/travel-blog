@@ -6,7 +6,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Symfony\Cmf\Bundle\BlogBundle\Document\Blog;
-use Symfony\Cmf\Bundle\BlogBundle\Document\Post;
+use DTL\TravelBundle\Document\VoyagePost;
 use PHPCR\Util\NodeHelper;
 
 class LoadBlogData implements FixtureInterface, OrderedFixtureInterface
@@ -33,11 +33,14 @@ class LoadBlogData implements FixtureInterface, OrderedFixtureInterface
         $dm->persist($blog);
 
         for ($i = 1; $i <= 20; $i++) {
-            $p = new Post;
+            $p = new VoyagePost;
             $p->setTitle($this->faker->text(30));
             $p->setDate(new \DateTime($this->faker->date));
             $p->setBody($this->faker->text(500));
             $p->setBlog($blog);
+            $p->setDistance($dist = rand(33, 160) * 1000);
+            $p->setDuration((($dist / 1000) / rand(14, 30) * 3600));
+            $p->setMaxSpeed(rand(33, 60));
             $dm->persist($p);
         }
 

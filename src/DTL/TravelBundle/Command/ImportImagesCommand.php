@@ -65,8 +65,7 @@ class ImportImagesCommand extends AddMassMediaCommand
             }
 
             if (isset($exif['FILE'])) {
-                $timestamp = new \DateTime;
-                $timestamp->setTimestamp($exif['FILE']['FileDateTime']);
+                $timestamp = new \DateTime($exif['EXIF']['DateTimeOriginal']);
                 $media->setTimestamp($timestamp);
             }
 

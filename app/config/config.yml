@@ -133,9 +133,17 @@ sonata_media:
 
 symfony_cmf_blog:
     blog_basepath: /cms/content
+    class:
+        post: DTL\TravelBundle\Document\VoyagePost
+        blog: ~
+        blog_admin: ~
+        post_admin: DTL\TravelBundle\Admin\PostAdmin
 
 sonata_block:
     default_contexts: [cms]
     blocks:
         sonata.admin.block.admin_list:
             contexts:   [admin]
+
+dtl_time_distance:
+    normalized_distance_unit: km

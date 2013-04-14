@@ -29,6 +29,7 @@ class AppKernel extends Kernel
             new Symfony\Cmf\Bundle\RoutingAutoBundle\SymfonyCmfRoutingAutoBundle(),
 
             new DTL\TravelBundle\DTLTravelBundle(),
+            new DTL\Bundle\TimeDistanceBundle\DTLTimeDistanceBundle(),
             new Sonata\jQueryBundle\SonatajQueryBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),

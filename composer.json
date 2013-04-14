@@ -24,7 +24,9 @@
         "sensio/generator-bundle": "2.2.*",
         "fzaninotto/faker": "dev-master",
         "sonata-project/doctrine-phpcr-admin-bundle": "1.0.*",
-        "sonata-project/media-bundle": "2.2.x-dev"
+        "sonata-project/media-bundle": "2.2.x-dev",
+        "jackalope/jackalope-jackrabbit": "1.0.*",
+        "dtl/time-distance-bundle": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
