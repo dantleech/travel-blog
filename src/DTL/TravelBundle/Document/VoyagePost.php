@@ -3,6 +3,7 @@
 namespace DTL\TravelBundle\Document;
 
 use Symfony\Cmf\Bundle\BlogBundle\Document\Post as BasePost;
+use Doctrine\Common\Collections\ArrayCollection;
 
 class VoyagePost extends BasePost
 {
@@ -11,6 +12,13 @@ class VoyagePost extends BasePost
     protected $duration;
 
     protected $maxSpeed;
+
+    protected $chronoDates;
+
+    public function __construct()
+    {
+        $this->chronoDates = new ArrayCollection;
+    }
 
     public function getDistance()
     {
@@ -40,5 +48,16 @@ class VoyagePost extends BasePost
     public function setMaxSpeed($maxSpeed)
     {
         $this->maxSpeed = $maxSpeed;
+    }
+
+    public function getChronoDate()
+    {
+        foreach ($this->chronoDates as $date) {
+            if ($date->getName() == $this->getDate()->format('Y-m-d')) {
+                return $date;
+            }
+        }
+
+        return null;
     }
 }

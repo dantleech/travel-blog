@@ -9,6 +9,7 @@
         <field fieldName="distance" type="long"/>
         <field fieldName="duration" type="long"/>
         <field fieldName="maxSpeed" type="decimal"/>
+        <referrers fieldName="chronoDates" referring-document="DTL\TravelBundle\Document\ChronoDate" referenced-by="references"/>
     </document>
 
 </doctrine-mapping>

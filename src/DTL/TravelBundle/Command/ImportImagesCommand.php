@@ -8,6 +8,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use PHPCR\Util\NodeHelper;
+use Symfony\Component\Console\Input\InputOption;
 
 class ImportImagesCommand extends AddMassMediaCommand
 {
@@ -18,6 +19,8 @@ class ImportImagesCommand extends AddMassMediaCommand
             ->setDefinition(array(
                 new InputArgument('dir', InputArgument::REQUIRED, 'Directory with medias'),
             ));
+
+        $this->addOption('force-date', NULL, InputOption::VALUE_OPTIONAL, 'Force date on imported medias');
     }
 
     /**
@@ -65,7 +68,12 @@ class ImportImagesCommand extends AddMassMediaCommand
             }
 
             if (isset($exif['FILE'])) {
-                $timestamp = new \DateTime($exif['EXIF']['DateTimeOriginal']);
+                if ($forceDate = $input->getOption('force-date')) {
+                    $timestamp = new \DateTime($forceDate);
+                } else {
+                    $timestamp = new \DateTime($exif['EXIF']['DateTimeOriginal']);
+                }
+
                 $media->setTimestamp($timestamp);
             }
 

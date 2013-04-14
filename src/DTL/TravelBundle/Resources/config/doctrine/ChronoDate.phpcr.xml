@@ -1,0 +1,23 @@
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/phpcr/doctrine-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <document 
+        name="DTL\TravelBundle\Document\ChronoDate"
+        referenceable="true"
+        >
+
+        <parentdocument name="parent"/>
+
+        <nodename name="name"/>
+
+        <id name="id">
+            <generator strategy="parent"/>
+        </id>
+
+        <reference-many fieldName="references" strategy="weak"/>
+
+    </document>
+
+</doctrine-mapping>
+
+

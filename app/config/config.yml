@@ -1,7 +1,7 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
-    - { resource: @SymfonyCmfBlogBundle/Resources/config/routing/autoroute_default.yml }
+    - { resource: @DTLTravelBundle/Resources/config/autoroute.yml }
 
 framework:
     #esi:             ~
