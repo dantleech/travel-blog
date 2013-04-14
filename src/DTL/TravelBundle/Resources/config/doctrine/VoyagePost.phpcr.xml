@@ -1,0 +1,16 @@
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/phpcr/doctrine-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <document 
+        name="DTL\TravelBundle\Document\VoyagePost"
+        referenceable="true"
+        >
+
+        <field fieldName="distance" type="long"/>
+        <field fieldName="duration" type="long"/>
+        <field fieldName="maxSpeed" type="decimal"/>
+    </document>
+
+</doctrine-mapping>
+
+
