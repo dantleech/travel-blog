@@ -146,4 +146,3 @@ sonata_block:
             contexts:   [admin]
 
 dtl_time_distance:
-    normalized_distance_unit: km

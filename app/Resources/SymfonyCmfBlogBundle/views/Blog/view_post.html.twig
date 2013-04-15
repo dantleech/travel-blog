@@ -14,20 +14,6 @@
 </div>
 <div class="row-fluid">
     <div class="span12">
-        <table>
-            <thead>
-                <tr>
-                    <th>Distance</th>
-                    <th>Time</th>
-                    <th>Av. Speed</th>
-                    <th>Max Speed</th>
-                </tr>
-            </thead>
-        </table>
-    </div>
-</div>
-<div class="row-fluid">
-    <div class="span12">
         <h1>{{ post.title }}</h1>
     </div>
 </div>
@@ -43,6 +29,15 @@
         {{ post.body|nl2br|raw }}
     </div>
 </div>
+
+<h2>Stats</h2>
+
+<div class="row-fluid">
+    <div class="span12">
+        {% include "DTLTravelBundle::journey_table.html.twig" with {"journey": post} %}
+    </div>
+</div>
+
 {% set chrono = post.getChronoDate %}
 {% if chrono %}
     <h2>Medias</h2>

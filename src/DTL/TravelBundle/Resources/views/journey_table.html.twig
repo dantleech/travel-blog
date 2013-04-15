@@ -1,0 +1,17 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th>Distance</th>
+            <th>Time</th>
+            <th>Av. Speed</th>
+            <th>Max Speed</th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>{{ journey.distance|format_distance('km') }}km / {{ journey.distance|format_distance('miles') }}miles</td>
+        <td>{{ journey.duration|seconds_as_stopwatch }}</td>
+        <td>{{ journey.duration|average_speed(journey.distance, 'km') }} kph / {{ journey.duration|average_speed(journey.distance, 'miles') }} mph</td>
+        <td>{{ journey.maxSpeed|format_distance('km', 'km') }}kph / {{ journey.maxSpeed|format_distance('miles', 'km') }}mph</td>
+</table>
+
