@@ -77,6 +77,8 @@ class ImportImagesCommand extends AddMassMediaCommand
                 $media->setTimestamp($timestamp);
             }
 
+            $media->setContext('default');
+
             try {
                 $this->getMediaManager()->save($media);
             } catch (\ModelManagerException $e) {

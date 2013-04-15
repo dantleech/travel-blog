@@ -52,7 +52,7 @@ class ChronoDate
     public function getReferences($filter)
     {
         $references = $this->references->filter(function ($document) use ($filter) {
-            if ($document instanceof $filter) {
+            if (is_subclass_of($document, $filter)) {
                 return true;
             }
 

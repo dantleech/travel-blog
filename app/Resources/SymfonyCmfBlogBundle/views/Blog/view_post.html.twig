@@ -41,8 +41,19 @@
 {% set chrono = post.getChronoDate %}
 {% if chrono %}
     <h2>Medias</h2>
-    {% for image in chrono.getReferences('Sandbox\MediaBundle\Document\Media') %}
-    {% endfor %}
+    <ul class="inline">
+        {% for image in chrono.getReferences('Sandbox\\MediaBundle\\Document\\Media') %}
+            <li>
+                <a href="#">
+                {% include "DTLTravelBundle::journey_thumbnail.html.twig" with {"media": image} %}
+                </a>
+                <ul class="unstyled">
+                    <li><b>Time</b> {{ image.timestamp.format('H:i:s') }}</li>
+                    <li><b>Altitude</b> {{ image.altitude }}m</li>
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
 {% endif %}
 
 {% endblock %}
