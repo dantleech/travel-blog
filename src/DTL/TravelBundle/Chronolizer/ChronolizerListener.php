@@ -26,6 +26,7 @@ class ChronolizerListener
         $scheduledInserts = $uow->getScheduledInserts();
         $scheduledUpdates = $uow->getScheduledUpdates();
         $updates = array_merge($scheduledInserts, $scheduledUpdates);
+        $chronos = array();
 
         foreach ($updates as $document) {
             if (in_array(get_class($document), $classes)) {
@@ -38,16 +39,25 @@ class ChronolizerListener
                 }
 
                 $date = $dt->format('Y-m-d');
-                $cd = $dm->find(null, $chronoPath.'/'.$date);
-                if (null === $cd) {
-                    $cd = new ChronoDate;
-                    $cd->setName($date);
-                    $cd->setParent($parent);
+                if (isset($chronos[$date])) {
+                    $cd = $chronos[$date];
+                } else {
+                    $cd = $dm->find(null, $chronoPath.'/'.$date);
+                    if (null === $cd) {
+                        var_dump($date);
+                        $cd = new ChronoDate;
+                        $cd->setName($date);
+                        $cd->setParent($parent);
+                    }
+                    $chronos[$date] = $cd;
                 }
                 $cd->addDocumentReference($document);
-                $dm->persist($cd);
-                $uow->computeSingleDocumentChangeSet($cd);
             }
+        }
+
+        foreach ($chronos as $cd) {
+            $dm->persist($cd);
+            $uow->computeSingleDocumentChangeSet($cd);
         }
 
         $removes = $uow->getScheduledRemovals();

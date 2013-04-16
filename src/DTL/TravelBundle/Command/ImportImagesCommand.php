@@ -33,10 +33,18 @@ class ImportImagesCommand extends AddMassMediaCommand
         $finder->in(array($dir));
         $finder->name('*.jpg');
         $dm = $this->getContainer()->get('doctrine_phpcr.odm.default_document_manager');
+        $repo = $dm->getRepository('Sandbox\MediaBundle\Document\Media');
 
         NodeHelper::createPath($dm->getPhpcrSession(), '/cms/media');
 
         foreach ($finder as $file) {
+            $qb = $repo->createQueryBuilder();
+            $qb->where($qb->expr()->eq('name', $file->getFilename()));
+            $existing = $qb->getQuery()->getOneOrNullResult();
+            if ($existing) {
+                $output->writeln('<info>Skipping existing: </info>'.$file->getFilename());
+                continue;
+            }
             $output->writeln('<info>Importing: '.$file.'</info>');
             $exif = exif_read_data($file->getRealPath(),'IFD0',true);
             $metadata = array();
@@ -81,6 +89,7 @@ class ImportImagesCommand extends AddMassMediaCommand
 
             try {
                 $this->getMediaManager()->save($media);
+                $dm->clear();
             } catch (\ModelManagerException $e) {
                 $output->writeln('<error>Error: [MM]'.$e->getPrevious()->getMessage().'</error>');
             } catch (\Exception $e) {
