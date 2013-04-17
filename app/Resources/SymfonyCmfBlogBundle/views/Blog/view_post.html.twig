@@ -44,7 +44,7 @@
     <ul class="inline">
         {% for image in chrono.getReferences('Sandbox\\MediaBundle\\Document\\Media') %}
             <li>
-                <a href="#">
+            <a href="{% path image, 'big' %}">
                 {% include "DTLTravelBundle::journey_thumbnail.html.twig" with {"media": image} %}
                 </a>
                 <ul class="unstyled">
@@ -57,5 +57,3 @@
 {% endif %}
 
 {% endblock %}
-
-

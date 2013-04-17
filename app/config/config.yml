@@ -136,8 +136,6 @@ symfony_cmf_blog:
     blog_basepath: /cms/content
     class:
         post: DTL\TravelBundle\Document\VoyagePost
-        blog: ~
-        blog_admin: ~
         post_admin: DTL\TravelBundle\Admin\PostAdmin
 
 sonata_block:
