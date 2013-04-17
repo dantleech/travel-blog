@@ -93,7 +93,7 @@ knp_menu:
         template: DTLTravelBundle::knp_menu.html.twig
 
 symfony_cmf_menu:
-    use_sonata_admin: false
+    use_sonata_admin: true
     menu_basepath: /cms/menu
 
 sonata_admin:
