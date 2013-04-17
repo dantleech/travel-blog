@@ -27,7 +27,8 @@
         "sonata-project/media-bundle": "2.2.x-dev",
         "jackalope/jackalope-jackrabbit": "1.0.*",
         "dtl/time-distance-bundle": "dev-master",
-        "symfony-cmf/tree-browser-bundle": "dev-master"
+        "symfony-cmf/tree-browser-bundle": "dev-master",
+        "knplabs/knp-markdown-bundle": "1.2.x-dev"
     },
     "scripts": {
         "post-install-cmd": [
