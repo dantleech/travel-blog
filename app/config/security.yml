@@ -10,8 +10,7 @@ security:
         in_memory:
             memory:
                 users:
-                    user:  { password: userpass, roles: [ 'ROLE_USER' ] }
-                    admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
+                    admin: { password: %admin_pass%, roles: [ 'ROLE_ADMIN' ] }
 
     firewalls:
         dev:
@@ -23,3 +22,6 @@ security:
             anonymous: ~
             http_basic:
                 realm: "Secured Demo Area"
+
+    access_control:
+        - { path: ^/admin, roles: ROLE_ADMIN }

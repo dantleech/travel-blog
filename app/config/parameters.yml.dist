@@ -27,3 +27,4 @@ parameters:
     database_user: null
     database_password: null
 
+    admin_pass: admin
