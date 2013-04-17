@@ -38,3 +38,10 @@ gallery:
 media:
     resource: '@SonataMediaBundle/Resources/config/routing/media.xml'
     prefix: /admin/media
+
+fos_js_routing:
+    resource: @FOSJsRoutingBundle/Resources/config/routing/routing.xml
+
+symfony_cmf_tree:
+    resource: .
+    type: 'symfony_cmf_tree'

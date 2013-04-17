@@ -106,6 +106,7 @@ sonata_admin:
 sonata_media:
     default_context: default
     db_driver: doctrine_phpcr
+
     contexts:
         default:  # the default context is mandatory
             providers:
@@ -146,3 +147,9 @@ sonata_block:
             contexts:   [admin]
 
 dtl_time_distance:
+
+sonata_doctrine_phpcr_admin:
+    document_tree:
+        Doctrine\ODM\PHPCR\Document\Generic:
+            valid_children:
+                - all

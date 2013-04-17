@@ -27,6 +27,9 @@ class AppKernel extends Kernel
             new Symfony\Cmf\Bundle\BlogBundle\SymfonyCmfBlogBundle(),
             new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle(),
             new Symfony\Cmf\Bundle\RoutingAutoBundle\SymfonyCmfRoutingAutoBundle(),
+            new Symfony\Cmf\Bundle\TreeBrowserBundle\SymfonyCmfTreeBrowserBundle(),
+
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
 
             new DTL\TravelBundle\DTLTravelBundle(),
             new DTL\Bundle\TimeDistanceBundle\DTLTimeDistanceBundle(),
