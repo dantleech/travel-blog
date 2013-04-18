@@ -21,6 +21,15 @@ class ChronologyController extends Controller
     public function indexAction()
     {
         $dates = $this->getRepo()->getDates();
+
+        usort($dates, function ($a, $b) {
+            if ($a->getDate() > $b->getDate()) {
+                return true;
+            }
+
+            return false;
+        });
+
         return $this->render('DTLTravelBundle:Chronology:list.html.twig', array(
             'dates' => $dates
         ));
