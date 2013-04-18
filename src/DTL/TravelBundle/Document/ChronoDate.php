@@ -3,8 +3,9 @@
 namespace DTL\TravelBundle\Document;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Cmf\Component\Routing\RouteAwareInterface;
 
-class ChronoDate
+class ChronoDate implements RouteAwareInterface
 {
     protected $id;
 
@@ -13,6 +14,8 @@ class ChronoDate
     protected $name;
 
     protected $references;
+
+    protected $routes;
 
     public function getId()
     {
@@ -65,5 +68,14 @@ class ChronoDate
 
         return $references ? : array();
     }
-}
 
+    public function getDate()
+    {
+        return new \DateTime($this->getName());
+    }
+
+    public function getRoutes()
+    {
+        return $this->routes;
+    }
+}

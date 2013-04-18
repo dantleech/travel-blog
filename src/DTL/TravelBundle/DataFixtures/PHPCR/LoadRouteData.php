@@ -26,8 +26,14 @@ class LoadRouteData implements FixtureInterface, OrderedFixtureInterface
         $route->setName('home');
         $route->setRouteContent($content);
         $route->setParent($root);
-
         $dm->persist($route);
+
+        $route = new Route;
+        $route->setName('chronology');
+        $route->setDefault('type', 'travel_blog_chronology');
+        $route->setParent($root);
+        $dm->persist($route);
+
         $dm->flush();
     }
 }

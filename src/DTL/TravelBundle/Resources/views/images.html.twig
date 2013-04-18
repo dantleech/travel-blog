@@ -1,0 +1,14 @@
+    <ul class="inline">
+        {% for image in images  %}
+            <li>
+                <a href="{% path image, 'big' %}">
+                    {% thumbnail image, 'small' with {'class': 'img-polaroid'} %}
+                </a>
+                <ul class="unstyled">
+                    <li><b>Time</b> {{ image.timestamp.format('H:i:s') }}</li>
+                    <li><b>Altitude</b> {{ image.altitude }}m</li>
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+

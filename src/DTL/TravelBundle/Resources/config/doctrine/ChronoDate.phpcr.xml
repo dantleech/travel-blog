@@ -4,6 +4,7 @@
     <document 
         name="DTL\TravelBundle\Document\ChronoDate"
         referenceable="true"
+        repository-class="DTL\TravelBundle\Repository\ChronoDateRepository"
         >
 
         <parentdocument name="parent"/>
@@ -13,6 +14,8 @@
         <id name="id">
             <generator strategy="parent"/>
         </id>
+
+        <referrers fieldName="routes" referring-document="Symfony\Cmf\Bundle\RoutingExtraBundle\Document\Route" referenced-by="routeContent"/>
 
         <reference-many fieldName="references" strategy="weak"/>
 

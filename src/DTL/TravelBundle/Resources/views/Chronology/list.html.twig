@@ -1,0 +1,38 @@
+{% extends "DTLTravelBundle::layout.html.twig" %}
+{% block content %}
+    <h2>Timeline</h2>
+    <ul>
+    {% for date in dates %}
+    <li style="margin-bottom: 2em;">
+        <i class="icon-star-empty"></i>
+        <a style="font-size: 2em;" class="large" href="{{ path(date) }}">{{ date.date.format('Y-m-d') }}</a>
+        <ul>
+            {% for post in date.getReferences('DTL\\TravelBundle\\Document\\VoyagePost') %}
+            <li><b>Journal:</b><a href="{{ path(post) }}">{{ post.title }}</a></li>
+            {% endfor %}
+            {% set medias = date.getReferences('Sandbox\\MediaBundle\\Document\\Media') %}
+            {% if medias|length > 0 %}
+            <li>
+                <ul class="inline">
+                    <li><b>Medias:</b></li>
+                    {% for i, image in medias %}
+                        {% if i < 5 %}
+                            <li>
+                                <a href="{% path image, 'big' %}">
+                                    {% thumbnail image, 'small' with {'class': 'img-polaroid'} %}
+                                </a>
+                            </li>
+                        {% endif %}
+                        {% if i == 5 %}
+                        <li><a href="#"> and more</li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </li>
+            {% endif %}
+        </ul>
+    </li>
+    {% endfor %}
+    </ul>
+{% endblock %}
+

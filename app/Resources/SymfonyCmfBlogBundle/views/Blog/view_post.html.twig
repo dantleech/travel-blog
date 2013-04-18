@@ -12,48 +12,14 @@
         {% endif %}
     </div>
 </div>
-<div class="row-fluid">
-    <div class="span12">
-        <h1>{{ post.title }}</h1>
-    </div>
-</div>
-<div class="row-fluid">
-    <div class="span6">
-        <p><i>Posted on: {{ post.date.format('Y-m-d H:i:s') }}</i></p>
-    </div>
-    <div class="span6" style="text-align: right">
-    </div>
-</div>
-<div class="row-fluid">
-    <div class="span12">
-        {{ post.body|markdown }}
-    </div>
-</div>
 
-<h2>Stats</h2>
-
-<div class="row-fluid">
-    <div class="span12">
-        {% include "DTLTravelBundle::journey_table.html.twig" with {"journey": post} %}
-    </div>
-</div>
+{% include "DTLTravelBundle::post_view.html.twig" %}
 
 {% set chrono = post.getChronoDate %}
+{% set images = chrono.getReferences('Sandbox\\MediaBundle\\Document\\Media') %}
 {% if chrono %}
     <h2>Medias</h2>
-    <ul class="inline">
-        {% for image in chrono.getReferences('Sandbox\\MediaBundle\\Document\\Media') %}
-            <li>
-            <a href="{% path image, 'big' %}">
-                {% include "DTLTravelBundle::journey_thumbnail.html.twig" with {"media": image} %}
-                </a>
-                <ul class="unstyled">
-                    <li><b>Time</b> {{ image.timestamp.format('H:i:s') }}</li>
-                    <li><b>Altitude</b> {{ image.altitude }}m</li>
-                </ul>
-            </li>
-        {% endfor %}
-    </ul>
+    {% include "DTLTravelBundle::images.html.twig" with {"images": images} %}
 {% endif %}
 
 {% endblock %}

@@ -1,0 +1,36 @@
+{% extends "SymfonyCmfBlogBundle::default_layout.html.twig" %}
+{% block content %}
+
+<div class="row-fluid">
+    {% set next = cmf_next(date) %}
+    {% set prev = cmf_prev(date) %}
+    {% set date_f = "l NS F, o" %}
+
+    <div class="span6">
+        {% if prev %}
+            <a href="{{ path(prev) }}">&lt;&lt; {{ prev.date.format(date_f) }}</a>
+        {% endif %}
+    </div>
+    <div class="span6" style="text-align: right">
+        {% if next %}
+            <a href="{{ path(next) }}">{{ next.date.format(date_f) }} &gt;&gt;</a>
+        {% endif %}
+    </div>
+</div>
+
+<h1>Everything for {{ date.date.format(date_f) }}</h1>
+{% set posts = date.getReferences('DTL\\TravelBundle\\Document\\VoyagePost') %}
+{% for post in posts %}
+    {% include "DTLTravelBundle::post_view.html.twig" %}
+    {% else %}
+    <p><i>No posts</i></p>
+{% endfor %}
+
+{% set images = date.getReferences('Sandbox\\MediaBundle\\Document\\Media') %}
+{% if images|length > 0 %}
+    <h2>Medias</h2>
+    {% include "DTLTravelBundle::images.html.twig" with {"images": images} %}
+{% endif %}
+
+{% endblock %}
+
