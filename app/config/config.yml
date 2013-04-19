@@ -88,6 +88,7 @@ symfony_cmf_routing_extra:
 
         controllers_by_type:
             travel_blog_chronology: DTLTravelBundle:Chronology:index
+            travel_blog_map: DTLTravelBundle:Map:index
 
         templates_by_class:
             Symfony\Cmf\Bundle\ContentBundle\Document\StaticContent: DTLTravelBundle:StaticContent:layout.html.twig
