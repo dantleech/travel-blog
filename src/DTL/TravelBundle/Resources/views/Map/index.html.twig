@@ -23,8 +23,20 @@
             var size = new OpenLayers.Size(20,20);
             var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
             {% for media in medias %}
-                var icon = new OpenLayers.Icon('{% path media, 'small' %}',size,offset);
-                markers.addMarker(new OpenLayers.Marker(new OpenLayers.LonLat(-{{ media.longitude }},{{ media.latitude }}), icon));
+                var icon = new OpenLayers.Icon('{% path media, 'small' %}', size,offset);
+                var marker = new OpenLayers.Marker(new OpenLayers.LonLat(-{{ media.longitude }},{{ media.latitude }}), icon);
+                marker.events.register('mouseover', marker, function (evt) {
+                    var el = evt.toElement;
+                    $(el).unbind();
+                    var photo = $('<div style="position: relative; width: 400px; height: 400px;"><img class="img-polaroid" src="{% path media, 'big' %}"/></div>');
+                    $(el).bind('mouseout', function () { photo.remove() });
+                    $(evt.toElement).after(photo);
+                });
+
+                marker.events.register('click', marker, function (evt) {
+                    window.location = '{{ path(media.chronoDate) }}';
+                });
+                markers.addMarker(marker);
             {% endfor %}
 
 

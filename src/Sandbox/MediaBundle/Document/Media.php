@@ -28,6 +28,14 @@ class Media extends BaseMedia
 
     protected $timestamp;
 
+    protected $chronoDates;
+
+    public function __construct()
+    {
+        $this->chronoDates = new ArrayCollection;
+    }
+
+
     /**
      * Get id
      *
@@ -96,5 +104,16 @@ class Media extends BaseMedia
     public function getTimestamp()
     {
         return $this->timestamp;
+    }
+
+    public function getChronoDate()
+    {
+        foreach ($this->chronoDates as $date) {
+            if ($date->getName() == $this->getTimestamp()->format('Y-m-d')) {
+                return $date;
+            }
+        }
+
+        return null;
     }
 }
