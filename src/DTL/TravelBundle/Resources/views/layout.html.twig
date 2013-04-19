@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html>
     <head>
-    {% block includes %}
-        <link href="{{ asset('bundles/dtltravel/css/bootstrap-combined.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('bundles/dtltravel/css/style.css') }}" rel="stylesheet">
-    {% endblock %}
+        {% block styleshees %}
+            <link href="{{ asset('bundles/dtltravel/css/bootstrap-combined.min.css') }}" rel="stylesheet">
+            <link href="{{ asset('bundles/dtltravel/css/style.css') }}" rel="stylesheet">
+            <link href="{{ asset('bundles/dtltravel/css/openlayers.css') }}" rel="stylesheet">
+        {% endblock %}
+        {% block javascripts %}
+            <script type="text/javascript" src="{{ asset('bundles/dtltravel/js/jquery-1.9.1.min.js') }}"></script>
+        {% endblock %}
         <title>My Blog</title>
     </head>
     <body>

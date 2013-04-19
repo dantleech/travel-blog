@@ -25,6 +25,7 @@ class LoadMenuData implements FixtureInterface, OrderedFixtureInterface
         $homeContent = $dm->find(null, '/cms/content/home');
         $blogContent = $dm->find(null, '/cms/content/DTLs Blog');
         $chronoRoute = $dm->find(null, '/cms/routes/chronology');
+        $mapRoute = $dm->find(null, '/cms/routes/map');
 
         $menu = new MenuNode;
         $menu->setName('main');
@@ -52,6 +53,13 @@ class LoadMenuData implements FixtureInterface, OrderedFixtureInterface
         $chronologyNode->setContent($chronoRoute);
         $chronologyNode->setLabel('Timeline');
         $dm->persist($chronologyNode);
+
+        $mapNode = new MenuNode;
+        $mapNode->setName('map');
+        $mapNode->setParent($menu);
+        $mapNode->setContent($mapRoute);
+        $mapNode->setLabel('Map');
+        $dm->persist($mapNode);
 
         $dm->flush();
     }

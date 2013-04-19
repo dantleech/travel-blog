@@ -34,6 +34,12 @@ class LoadRouteData implements FixtureInterface, OrderedFixtureInterface
         $route->setParent($root);
         $dm->persist($route);
 
+        $route = new Route;
+        $route->setName('map');
+        $route->setDefault('type', 'travel_blog_map');
+        $route->setParent($root);
+        $dm->persist($route);
+
         $dm->flush();
     }
 }

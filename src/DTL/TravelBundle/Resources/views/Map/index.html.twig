@@ -1,0 +1,52 @@
+{% extends "DTLTravelBundle::layout.html.twig" %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/dtltravel/js/OpenLayers.js') }}"></script>
+    <script defer="defer" type="text/javascript">
+        var map, layer;
+
+        function init(){
+            OpenLayers.ProxyHost="/proxy/?url=";
+            map = new OpenLayers.Map('map');
+            layer = new OpenLayers.Layer.WMS( "OpenLayers WMS", 
+                "http://vmap0.tiles.osgeo.org/wms/vmap0", {
+                    layers: 'basic,clabel,ctylabel'
+                } 
+            );
+                
+            map.addLayer(layer);
+            map.setCenter(new OpenLayers.LonLat(0, 40), 4);
+
+            var markers = new OpenLayers.Layer.Markers( "Markers" );
+            map.addLayer(markers);
+
+            var size = new OpenLayers.Size(20,20);
+            var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
+            {% for media in medias %}
+                var icon = new OpenLayers.Icon('{% path media, 'small' %}',size,offset);
+                markers.addMarker(new OpenLayers.Marker(new OpenLayers.LonLat(-{{ media.longitude }},{{ media.latitude }}), icon));
+            {% endfor %}
+
+
+//            var halfIcon = icon.clone();
+//            markers.addMarker(new OpenLayers.Marker(new OpenLayers.LonLat(0,45),halfIcon));
+//
+//            marker = new OpenLayers.Marker(new OpenLayers.LonLat(90,10),icon.clone());
+//            marker.setOpacity(0.2);
+//            marker.events.register('mousedown', marker, function(evt) { alert(this.icon.url); OpenLayers.Event.stop(evt); });
+//            markers.addMarker(marker); 
+        }
+    
+        $(document).ready(function () {
+            init();
+        });
+    </script>
+{% endblock javascripts %}
+{% block content %}
+    <h2>Map</h2>
+    <div class="row">
+        <div class="span12" style="height: 600px">
+            <div id="map" style="width: 100%; height: 100%"></div>
+        </div>
+    </div>
+{% endblock %}
