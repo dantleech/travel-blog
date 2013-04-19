@@ -28,7 +28,7 @@
                 marker.events.register('mouseover', marker, function (evt) {
                     var el = evt.toElement;
                     $(el).unbind();
-                    var photo = $('<div style="position: relative; width: 400px; height: 400px;"><img class="img-polaroid" src="{% path media, 'big' %}"/></div>');
+                    var photo = $('<div class="img-polaroid" style="position: relative; margin-top: -100px; margin-left: 30px; width: 400px; "><b>Date: </b>{{ media.timestamp.format('Y-m-d h:i:s') }}<br/><b>Altitude: </b>{{ media.altitude }}m<br/><b>GPS: </b>{{ media.longitude }}, {{ media.latitude }}<br/><img src="{% path media, 'big' %}"/></div>');
                     $(el).bind('mouseout', function () { photo.remove() });
                     $(evt.toElement).after(photo);
                 });
