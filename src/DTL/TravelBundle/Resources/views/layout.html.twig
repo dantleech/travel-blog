@@ -14,8 +14,9 @@
     <body>
         <div class="container">
             <div class="row">
-                <div id="header" class="span12">
-                    <h1>Dans Travel Blog #3</h1>
+                <div id="header" class="span12" style="padding: 5px;">
+                    <h1 style="color: white">{{ sonata_block_render({'name': '/cms/content/site/title'}) }}</h1>
+                    <h4 style="color: #444; margin-left: 5px;">{{ sonata_block_render({'name': '/cms/content/site/sub-title'}) }}</h4>
                 </div>
             </div>
             <div class="row">

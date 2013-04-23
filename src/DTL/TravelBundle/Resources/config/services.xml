@@ -8,6 +8,16 @@
         <service id="dtl_travel.chronolizer_listener" class="DTL\TravelBundle\Chronolizer\ChronolizerListener">
             <tag name="doctrine_phpcr.event_listener" event="onFlush"/>
         </service>
+
+        <service id="symfony_cmf_routing_extra.initializer" class="Doctrine\Bundle\PHPCRBundle\Initializer\GenericInitializer">
+            <argument type="collection">
+                <argument>/cms/content/site_title</argument>
+                <argument>/cms/content/site_subtitle</argument>
+                <argument>/cms/content/chronology_description</argument>
+                <argument>/cms/content/map_description</argument>
+            </argument>
+            <tag name="doctrine_phpcr.initializer"/>
+        </service>
     </services>
 </container>
 

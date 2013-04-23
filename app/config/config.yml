@@ -158,3 +158,6 @@ sonata_doctrine_phpcr_admin:
         Doctrine\ODM\PHPCR\Document\Generic:
             valid_children:
                 - all
+
+symfony_cmf_block:
+    document_manager_name:  default

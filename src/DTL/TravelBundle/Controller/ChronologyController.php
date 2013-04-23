@@ -20,7 +20,7 @@ class ChronologyController extends Controller
 
     public function indexAction()
     {
-        $dates = $this->getRepo()->getDates();
+        $dates = $this->getRepo()->getDates()->toArray();
 
         usort($dates, function ($a, $b) {
             if ($a->getDate() > $b->getDate()) {

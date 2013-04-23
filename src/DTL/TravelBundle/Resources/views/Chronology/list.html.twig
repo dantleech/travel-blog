@@ -1,6 +1,7 @@
 {% extends "DTLTravelBundle::layout.html.twig" %}
 {% block content %}
     <h2>Timeline</h2>
+    {{ sonata_block_render({'name': '/cms/content/chronology_description'}) }}
     <ul>
     {% for date in dates %}
     <li style="margin-bottom: 2em;">
