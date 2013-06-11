@@ -10,11 +10,11 @@
             <generator strategy="repository" />
         </id>
 
-        <field fieldName="latitude" type="decimal"/>
-        <field fieldName="longitude" type="decimal"/>
-        <field fieldName="altitude" type="decimal"/>
-        <field fieldName="timestamp" type="date"/>
-        <referrers fieldName="chronoDates" referring-document="DTL\TravelBundle\Document\ChronoDate" referenced-by="references"/>
+        <field name="latitude" type="decimal"/>
+        <field name="longitude" type="decimal"/>
+        <field name="altitude" type="decimal"/>
+        <field name="timestamp" type="date"/>
+        <referrers name="chronoDates" referring-document="DTL\TravelBundle\Document\ChronoDate" referenced-by="references"/>
     </document>
 
 </doctrine-phpcr-mapping>

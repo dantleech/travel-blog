@@ -42,6 +42,6 @@ media:
 fos_js_routing:
     resource: @FOSJsRoutingBundle/Resources/config/routing/routing.xml
 
-symfony_cmf_tree:
+cmf_tree:
     resource: .
-    type: 'symfony_cmf_tree'
+    type: 'cmf_tree'

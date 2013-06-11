@@ -6,7 +6,7 @@
 
     <document name="Sandbox\MediaBundle\Document\GalleryHasMedia" referenceable="true" >
 
-        <reference-one fieldName="media" strategy="weak" targetDocument="Sandbox\MediaBundle\Document\Media" />
+        <reference-one name="media" strategy="weak" targetDocument="Sandbox\MediaBundle\Document\Media" />
 
         <id name="id" type="id">
             <generator strategy="parent" />

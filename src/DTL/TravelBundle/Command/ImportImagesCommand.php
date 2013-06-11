@@ -22,6 +22,7 @@ class ImportImagesCommand extends AddMassMediaCommand
 
         $this->addOption('force-date', NULL, InputOption::VALUE_OPTIONAL, 'Force date on imported medias');
         $this->addOption('greater-than', NULL, InputOption::VALUE_OPTIONAL, 'Skip values greater than');
+        $this->addOption('update', NULL, InputOption::VALUE_NONE, 'Update existing nodes');
     }
 
     /**
@@ -30,6 +31,7 @@ class ImportImagesCommand extends AddMassMediaCommand
     public function execute(InputInterface $input, OutputInterface $output)
     {
         $gt = $input->getOption('greater-than');
+        $update = $input->getOption('update');
         $dir = $input->getArgument('dir');
         $finder = Finder::create();
         $finder->in(array($dir));
@@ -55,10 +57,16 @@ class ImportImagesCommand extends AddMassMediaCommand
             $qb = $repo->createQueryBuilder();
             $qb->where($qb->expr()->eq('name', $file->getFilename()));
             $existing = $qb->getQuery()->getOneOrNullResult();
-            if ($existing) {
+
+            if ($existing && false == $update) {
                 $output->writeln('<info>Skipping existing: </info>'.$file->getFilename());
                 continue;
+            } elseif ($existing) {
+                $media = $existing;
+            } else {
+                $media = $this->getMediaManager()->create();
             }
+
             $output->writeln('<info>Importing: '.$file.'</info>');
             $exif = exif_read_data($file->getRealPath(),'IFD0',true);
             $metadata = array();
@@ -72,7 +80,6 @@ class ImportImagesCommand extends AddMassMediaCommand
                 }
             }
 
-            $media = $this->getMediaManager()->create();
             $media->setName($file->getFileName());
             $media->setProviderName('sonata.media.provider.image');
             $media->setBinaryContent($file->getRealPath());

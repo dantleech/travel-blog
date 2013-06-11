@@ -6,10 +6,10 @@
         referenceable="true"
         >
 
-        <field fieldName="distance" type="long"/>
-        <field fieldName="duration" type="long"/>
-        <field fieldName="maxSpeed" type="decimal"/>
-        <referrers fieldName="chronoDates" referring-document="DTL\TravelBundle\Document\ChronoDate" referenced-by="references"/>
+        <field name="distance" type="long"/>
+        <field name="duration" type="long"/>
+        <field name="maxSpeed" type="decimal"/>
+        <referrers name="chronoDates" referring-document="DTL\TravelBundle\Document\ChronoDate" referenced-by="references"/>
     </document>
 
 </doctrine-mapping>

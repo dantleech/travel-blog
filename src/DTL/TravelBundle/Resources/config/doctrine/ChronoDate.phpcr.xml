@@ -15,9 +15,9 @@
             <generator strategy="parent"/>
         </id>
 
-        <referrers fieldName="routes" referring-document="Symfony\Cmf\Bundle\RoutingExtraBundle\Document\Route" referenced-by="routeContent"/>
+        <referrers name="routes" referring-document="Symfony\Cmf\Bundle\RoutingBundle\Document\Route" referenced-by="routeContent"/>
 
-        <reference-many fieldName="references" strategy="weak"/>
+        <reference-many name="references" strategy="weak"/>
 
     </document>
 
