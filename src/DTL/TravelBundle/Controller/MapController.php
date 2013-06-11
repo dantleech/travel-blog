@@ -25,6 +25,7 @@ class MapController extends Controller
             $qb->expr()->neq('longitude', ''),
             $qb->expr()->neq('latitude', '')
         ));
+        $qb->addOrderBy('timestamp', 'asc');
         $q = $qb->getQuery();
         $res = $q->getResult();
 

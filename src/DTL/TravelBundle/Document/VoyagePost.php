@@ -60,4 +60,9 @@ class VoyagePost extends BasePost
 
         return null;
     }
+
+    public function getWordCount()
+    {
+        return str_word_count($this->body);
+    }
 }

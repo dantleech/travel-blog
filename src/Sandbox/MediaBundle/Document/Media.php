@@ -3,6 +3,7 @@
 namespace Sandbox\MediaBundle\Document;
 
 use Sonata\MediaBundle\PHPCR\BaseMedia;
+use Doctrine\Common\Collections\ArrayCollection;
 
 class Media extends BaseMedia
 {

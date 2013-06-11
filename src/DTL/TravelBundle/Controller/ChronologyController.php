@@ -24,10 +24,10 @@ class ChronologyController extends Controller
 
         usort($dates, function ($a, $b) {
             if ($a->getDate() > $b->getDate()) {
-                return true;
+                return false;
             }
 
-            return false;
+            return true;
         });
 
         return $this->render('DTLTravelBundle:Chronology:list.html.twig', array(

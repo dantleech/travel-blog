@@ -8,27 +8,42 @@
         function init(){
             OpenLayers.ProxyHost="/proxy/?url=";
             map = new OpenLayers.Map('map');
-            layer = new OpenLayers.Layer.WMS( "OpenLayers WMS", 
-                "http://vmap0.tiles.osgeo.org/wms/vmap0", {
-                    layers: 'basic,clabel,ctylabel,statelabel'
-                } 
-            );
+            layer = new OpenLayers.Layer.OSM( "OpenLayers WMS");
+
+            // layer = new OpenLayers.Layer.WMS( "OpenLayers WMS", 
+            //     "http://vmap0.tiles.osgeo.org/wms/vmap0", {
+            //         layers: 'basic,clabel,ctylabel,statelabel'
+            //     } 
+            // );
                 
             map.addLayer(layer);
-            map.setCenter(new OpenLayers.LonLat(0, 40), 4);
+
+            {% set lastMedia = medias|last %}
+            map.setCenter(
+                new OpenLayers.LonLat(-{{ lastMedia.longitude }}, {{ lastMedia.latitude }}).transform(
+                new OpenLayers.Projection("EPSG:4326"),
+                map.getProjectionObject()
+            ), 8);
 
             var markers = new OpenLayers.Layer.Markers( "Markers" );
             map.addLayer(markers);
 
             var size = new OpenLayers.Size(20,20);
             var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
+
             {% for media in medias %}
                 var icon = new OpenLayers.Icon('{% path media, 'small' %}', size,offset);
-                var marker = new OpenLayers.Marker(new OpenLayers.LonLat(-{{ media.longitude }},{{ media.latitude }}), icon);
+
+                var marker = new OpenLayers.Marker(
+                    new OpenLayers.LonLat({{ media.longitude }},{{ media.latitude }}).transform(
+                        new OpenLayers.Projection("EPSG:4326"),
+                        map.getProjectionObject()
+                ), icon);
+
                 marker.events.register('mouseover', marker, function (evt) {
                     var el = evt.toElement;
                     $(el).unbind();
-                    var photo = $('<div class="img-polaroid" style="position: relative; margin-top: -100px; margin-left: 30px; width: 400px; "><b>Date: </b>{{ media.timestamp.format('Y-m-d h:i:s') }}<br/><b>Altitude: </b>{{ media.altitude }}m<br/><b>GPS: </b>{{ media.longitude }}, {{ media.latitude }}<br/><img src="{% path media, 'big' %}"/></div>');
+                    var photo = $('<div class="img-polaroid" style="z-index: 100; position: relative; margin-top: -100px; margin-left: 30px; width: 400px; "><b>Date: </b>{{ media.timestamp.format('Y-m-d h:i:s') }}<br/><b>Altitude: </b>{{ media.altitude }}m<br/><b>GPS: </b>{{ media.longitude }}, {{ media.latitude }}<br/><img src="{% path media, 'big' %}"/></div>');
                     $(el).bind('mouseout', function () { photo.remove() });
                     $(evt.toElement).after(photo);
                 });
@@ -39,8 +54,7 @@
                 markers.addMarker(marker);
             {% endfor %}
 
-
-            map.addControl(new OpenLayers.Control.LayerSwitcher());
+            //map.addControl(new OpenLayers.Control.LayerSwitcher());
 //            var halfIcon = icon.clone();
 //            markers.addMarker(new OpenLayers.Marker(new OpenLayers.LonLat(0,45),halfIcon));
 //

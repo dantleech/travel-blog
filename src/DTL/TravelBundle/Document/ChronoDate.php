@@ -4,6 +4,7 @@ namespace DTL\TravelBundle\Document;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Cmf\Component\Routing\RouteAwareInterface;
+use Doctrine\Common\Collections\Criteria;
 
 class ChronoDate implements RouteAwareInterface
 {
@@ -66,7 +67,17 @@ class ChronoDate implements RouteAwareInterface
             return false;
         });
 
-        return $references ? : array();
+        $array = new ArrayCollection($references->toArray());
+
+        $c = Criteria::create()
+            ->orderBy(array(
+                'timestamp' => 'ASC',
+                'date' => 'ASC',
+            ));
+
+        $array = $array->matching($c);
+
+        return $array? : array();
     }
 
     public function getDate()

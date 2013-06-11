@@ -21,6 +21,7 @@ class ImportImagesCommand extends AddMassMediaCommand
             ));
 
         $this->addOption('force-date', NULL, InputOption::VALUE_OPTIONAL, 'Force date on imported medias');
+        $this->addOption('greater-than', NULL, InputOption::VALUE_OPTIONAL, 'Skip values greater than');
     }
 
     /**
@@ -28,10 +29,23 @@ class ImportImagesCommand extends AddMassMediaCommand
      */
     public function execute(InputInterface $input, OutputInterface $output)
     {
+        $gt = $input->getOption('greater-than');
         $dir = $input->getArgument('dir');
         $finder = Finder::create();
         $finder->in(array($dir));
+        $finder->sortByName();
         $finder->name('*.jpg');
+
+        if ($gt) {
+            $finder->filter(function ($v) use ($gt) {
+                if ($v->getFilename() < $gt) {
+                    return false;
+                }
+
+                return true;
+            });
+        }
+        
         $dm = $this->getContainer()->get('doctrine_phpcr.odm.default_document_manager');
         $repo = $dm->getRepository('Sandbox\MediaBundle\Document\Media');
 
@@ -90,10 +104,11 @@ class ImportImagesCommand extends AddMassMediaCommand
             try {
                 $this->getMediaManager()->save($media);
                 $dm->clear();
+                $dm->flush();
             } catch (\ModelManagerException $e) {
-                $output->writeln('<error>Error: [MM]'.$e->getPrevious()->getMessage().'</error>');
             } catch (\Exception $e) {
                 $output->writeln('<error>Error: '.$e->getPrevious()->getMessage().'</error>');
+                throw $e;
             }
 
             $output->writeln(sprintf(' > %s - %s', $media->getId(), $media->getName()));

@@ -44,7 +44,6 @@ class ChronolizerListener
                 } else {
                     $cd = $dm->find(null, $chronoPath.'/'.$date);
                     if (null === $cd) {
-                        var_dump($date);
                         $cd = new ChronoDate;
                         $cd->setName($date);
                         $cd->setParent($parent);
