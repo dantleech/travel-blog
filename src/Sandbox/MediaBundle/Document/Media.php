@@ -117,4 +117,12 @@ class Media extends BaseMedia
 
         return null;
     }
+
+    public function getProviderReference()
+    {
+        if (!$this->providerReference) {
+            return basename($this->getId());
+        }
+        return $this->providerReference;
+    }
 }

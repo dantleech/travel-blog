@@ -7,7 +7,7 @@
         repository-class="DTL\TravelBundle\Repository\ChronoDateRepository"
         >
 
-        <parentdocument name="parent"/>
+        <parent-document name="parent"/>
 
         <nodename name="name"/>
 

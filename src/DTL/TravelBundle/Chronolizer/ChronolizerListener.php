@@ -2,7 +2,7 @@
 
 namespace DTL\TravelBundle\Chronolizer;
 
-use Doctrine\ODM\PHPCR\Event\OnFlushEventArgs;
+use Doctrine\ODM\PHPCR\Event\ManagerEventArgs;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Cmf\Bundle\RoutingAutoBundle\Document\AutoRoute;
 use PHPCR\Util\NodeHelper;
@@ -10,7 +10,7 @@ use DTL\TravelBundle\Document\ChronoDate;
 
 class ChronolizerListener
 {
-    public function onFlush(OnFlushEventArgs $args)
+    public function onFlush(ManagerEventArgs $args)
     {
         $chronoPath = '/cms/chronology';
         $classes = array(
